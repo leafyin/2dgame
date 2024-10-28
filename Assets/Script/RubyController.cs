@@ -13,10 +13,20 @@ public class RubyController : MonoBehaviour
 
     public int health { get { return currentHealth;  } }
 
-    // 位置
     Rigidbody2D rigidbody2d;
+
+    // 位置
     float horizontal;
     float vertical;
+
+    // 无敌时间
+    public float timeInvincible = 2.0f;
+
+    // 无敌状态
+    bool isInvincible;
+
+    // 无敌时间计时器
+    float invincibleTimer; 
 
     // Start is called before the first frame update
     void Start()
@@ -34,7 +44,6 @@ public class RubyController : MonoBehaviour
         Vector2 position = rigidbody2d.position;
         position.x = position.x + speed * horizontal * Time.deltaTime;
         position.y = position.y + speed * vertical * Time.deltaTime;
-
         rigidbody2d.MovePosition(position);
     }
 
@@ -53,11 +62,37 @@ public class RubyController : MonoBehaviour
             transform.position = position;
         }
 
+        // 计算无敌时间，递减
+        if (isInvincible)
+        {
+            invincibleTimer -= Time.deltaTime;
+            if (invincibleTimer < 0)
+                isInvincible = false;
+        }
     }
 
-    public void ChangeHealth(int amount)
+    public void ChangeHealth(int amount, bool type)
     {
-        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
-        Debug.Log(currentHealth + "/" + maxHealth);
+        if (type)
+        {
+            currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        }
+        else
+        {
+            // 判断是否无敌
+            if (isInvincible)
+                return;
+
+            isInvincible = true;
+            invincibleTimer = timeInvincible;
+            currentHealth = Mathf.Clamp(currentHealth - amount, -1, maxHealth);
+            Debug.Log("Ruby has been damaged -" + amount + "hp,current hp is" + currentHealth);
+            if (currentHealth == 0)
+            {
+                Debug.Log("Ruby is dead!");
+                Destroy(gameObject);
+            }
+        }
+        
     }
 }
