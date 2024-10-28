@@ -26,7 +26,12 @@ public class RubyController : MonoBehaviour
     bool isInvincible;
 
     // 无敌时间计时器
-    float invincibleTimer; 
+    float invincibleTimer;
+
+    Animator animator;
+
+    // 初始ruby看向的方向
+    public Vector2 lookDirection = new Vector2(1, 0);
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +42,7 @@ public class RubyController : MonoBehaviour
         rigidbody2d = GetComponent<Rigidbody2D>();
 
         currentHealth = maxHealth;
+        animator = GetComponent<Animator>();
     }
 
     void FixedUpdate()
@@ -52,6 +58,19 @@ public class RubyController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
+
+        Vector2 move = new Vector2(horizontal, vertical);
+
+        // 移动时判断最后停止的方向并归一化
+        if (!Mathf.Approximately(move.x, 0.0f) || !Mathf.Approximately(move.y, 0.0f))
+        {
+            lookDirection.Set(move.x, move.y);
+            lookDirection.Normalize();
+        }
+
+        animator.SetFloat("Look X", lookDirection.x);
+        animator.SetFloat("Look Y", lookDirection.y);
+        animator.SetFloat("Speed", move.magnitude);
 
         //空格回到中心点
         if (Input.GetKeyDown(KeyCode.Space))
@@ -79,6 +98,9 @@ public class RubyController : MonoBehaviour
         }
         else
         {
+            // 受击动画
+            animator.SetTrigger("Hit");
+
             // 判断是否无敌
             if (isInvincible)
                 return;
