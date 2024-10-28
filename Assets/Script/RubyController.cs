@@ -4,7 +4,16 @@ using UnityEngine;
 
 public class RubyController : MonoBehaviour
 {
+    // 速度
+    public float speed = 3.0f;
 
+    // 生命值
+    public int maxHealth = 5;
+    int currentHealth;
+
+    public int health { get { return currentHealth;  } }
+
+    // 位置
     Rigidbody2D rigidbody2d;
     float horizontal;
     float vertical;
@@ -16,13 +25,15 @@ public class RubyController : MonoBehaviour
         //Application.targetFrameRate = 10;
 
         rigidbody2d = GetComponent<Rigidbody2D>();
+
+        currentHealth = maxHealth;
     }
 
     void FixedUpdate()
     {
         Vector2 position = rigidbody2d.position;
-        position.x = position.x + 4f * horizontal * Time.deltaTime;
-        position.y = position.y + 4f * vertical * Time.deltaTime;
+        position.x = position.x + speed * horizontal * Time.deltaTime;
+        position.y = position.y + speed * vertical * Time.deltaTime;
 
         rigidbody2d.MovePosition(position);
     }
@@ -42,5 +53,11 @@ public class RubyController : MonoBehaviour
             transform.position = position;
         }
 
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        currentHealth = Mathf.Clamp(currentHealth + amount, 0, maxHealth);
+        Debug.Log(currentHealth + "/" + maxHealth);
     }
 }
