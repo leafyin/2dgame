@@ -220,8 +220,8 @@ MonoBehaviour:
   m_Lens:
     FieldOfView: 60
     OrthographicSize: 5
-    NearClipPlane: 0.3
-    FarClipPlane: 1000
+    NearClipPlane: 0.1
+    FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
@@ -260,13 +260,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 131901382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f453f694addf4275988fac205bc91968, type: 3}
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
   m_BoundingShape2D: {fileID: 1835273915}
-  m_Damping: 0.5
-  m_MaxWindowSize: -1
-  m_Padding: 0
+  m_ConfineScreenEdges: 1
+  m_Damping: 0
 --- !u!1001 &216109101
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -503,8 +504,8 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 60
   orthographic: 1
   orthographic size: 5
@@ -1334,6 +1335,30 @@ PrefabInstance:
     - target: {fileID: 1759533900851043775, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633554, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: m_NormalDirection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633555, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: prewarm
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633555, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633555, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633555, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3504215783422633555, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
+      propertyPath: InitialModule.startColor.maxColor.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3978998998040471878, guid: 7dc074b310864c54a883385cbe6036fb, type: 3}
       propertyPath: speed

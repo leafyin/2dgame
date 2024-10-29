@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
     void OnCollisionEnter2D(Collision2D other)
     {
         //增加调试日志来了解飞弹触碰到的对象
-        Debug.Log("Projectile Collision with " + other.gameObject);
+        //Debug.Log("Projectile Collision with " + other.gameObject);
         EnemyController e = other.collider.GetComponent<EnemyController>();
         if (e != null)
         {
