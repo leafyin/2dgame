@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D enemyRigidbody2d;
     float timer;
     int direction = 1;
+    bool broken = true;
 
     Animator animator;
 
@@ -28,8 +29,12 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        timer -= Time.deltaTime;
+        if (!broken)
+        {
+            return;
+        }
 
+        timer -= Time.deltaTime;
         if (timer < 0)
         {
             direction = -direction;
@@ -39,6 +44,11 @@ public class EnemyController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (!broken)
+        {
+            return;
+        }
+
         Vector2 position = enemyRigidbody2d.position;
         if (vertical)
         {
@@ -63,5 +73,14 @@ public class EnemyController : MonoBehaviour
         {
             player.ChangeHealth(1, false);
         }
+    }
+
+    public void Fix()
+    {
+        broken = false;
+        // 修复好机器人之后吧刚体去掉
+        GetComponent<Rigidbody2D>().simulated = false;
+        // 播放修复好动画
+        animator.SetTrigger("Fixed");
     }
 }

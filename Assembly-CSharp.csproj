@@ -58,11 +58,12 @@
     <Analyzer Include="C:\Program Files\Microsoft Visual Studio\2022\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\RubyController.cs" />
-    <Compile Include="Assets\Script\CameraLookAt.cs" />
+    <Compile Include="Assets\Script\Projectile.cs" />
     <Compile Include="Assets\Script\HealthCollectible.cs" />
-    <Compile Include="Assets\Script\Damageable.cs" />
+    <Compile Include="Assets\Script\CameraLookAt.cs" />
+    <Compile Include="Assets\Script\RubyController.cs" />
     <Compile Include="Assets\Script\EnemyController.cs" />
+    <Compile Include="Assets\Script\Damageable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

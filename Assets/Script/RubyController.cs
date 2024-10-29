@@ -33,6 +33,9 @@ public class RubyController : MonoBehaviour
     // 初始ruby看向的方向
     public Vector2 lookDirection = new Vector2(1, 0);
 
+    // 子弹
+    public GameObject projectilePrefab;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -88,6 +91,12 @@ public class RubyController : MonoBehaviour
             if (invincibleTimer < 0)
                 isInvincible = false;
         }
+
+        // 发射子弹
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            Launch();
+        }
     }
 
     public void ChangeHealth(int amount, bool type)
@@ -116,5 +125,16 @@ public class RubyController : MonoBehaviour
             }
         }
         
+    }
+
+    void Launch()
+    {
+        GameObject projectileObject = Instantiate(projectilePrefab, 
+            rigidbody2d.position + Vector2.up * 0.5f, Quaternion.identity);
+
+        Projectile projectile = projectileObject.GetComponent<Projectile>();
+        projectile.Launch(lookDirection, 300);
+
+        animator.SetTrigger("Launch");
     }
 }

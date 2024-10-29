@@ -6508,10 +6508,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4101913795369289780, guid: 442528e880635b04db0308cec1201fc7, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b77822e0485373d40b5beb92e9a5e728, type: 2}
     - target: {fileID: 5142006981287752220, guid: 442528e880635b04db0308cec1201fc7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -6559,10 +6555,6 @@ PrefabInstance:
     - target: {fileID: 5142006981287752222, guid: 442528e880635b04db0308cec1201fc7, type: 3}
       propertyPath: m_Name
       value: ruby
-      objectReference: {fileID: 0}
-    - target: {fileID: 6930090828174302336, guid: 442528e880635b04db0308cec1201fc7, type: 3}
-      propertyPath: m_SleepingMode
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 442528e880635b04db0308cec1201fc7, type: 3}
@@ -6664,7 +6656,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7816426488034929786, guid: 899fca3088913314e84ee2b5afa33944, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.4157
+      value: -0.3956
       objectReference: {fileID: 0}
     - target: {fileID: 7816426488034929786, guid: 899fca3088913314e84ee2b5afa33944, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6704,7 +6696,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7816426488034929787, guid: 899fca3088913314e84ee2b5afa33944, type: 3}
       propertyPath: m_Size.x
-      value: 4.0887938
+      value: 4.1290464
       objectReference: {fileID: 0}
     - target: {fileID: 7816426488034929787, guid: 899fca3088913314e84ee2b5afa33944, type: 3}
       propertyPath: m_Size.y
