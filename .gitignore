@@ -4,3 +4,6 @@ Library
 *.meta
 Temp
 .vs
+obj
+AimingRig.csproj
+Assembly-CSharp.csproj
