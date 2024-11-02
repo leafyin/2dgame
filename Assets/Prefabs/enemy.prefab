@@ -229,6 +229,14 @@ PrefabInstance:
       value: Particle System
       objectReference: {fileID: 0}
     - target: {fileID: 4939911347254266022, guid: 7976ddc230ce88b408ae2ca6245630d0, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939911347254266022, guid: 7976ddc230ce88b408ae2ca6245630d0, type: 3}
+      propertyPath: stopAction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4939911347254266022, guid: 7976ddc230ce88b408ae2ca6245630d0, type: 3}
       propertyPath: emitterVelocityMode
       value: 1
       objectReference: {fileID: 0}

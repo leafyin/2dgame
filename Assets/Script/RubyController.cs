@@ -124,7 +124,9 @@ public class RubyController : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-        
+        // 调用设置血条动画
+        UIHealthBar.instance.SetValue(currentHealth / (float)maxHealth);
+
     }
 
     void Launch()
