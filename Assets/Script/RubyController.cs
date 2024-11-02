@@ -28,6 +28,7 @@ public class RubyController : MonoBehaviour
     // 无敌时间计时器
     float invincibleTimer;
 
+    // 动画
     Animator animator;
 
     // 初始ruby看向的方向
@@ -36,6 +37,14 @@ public class RubyController : MonoBehaviour
     // 子弹
     public GameObject projectilePrefab;
 
+    public float stepInterval = 0.5f;      // 两步之间的时间间隔
+    private float stepTimer;               // 脚步声计时器
+
+    // 音频
+    AudioSource audioSource;
+    public AudioClip onHitClip;
+    public AudioClip throwCogClip;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -43,9 +52,9 @@ public class RubyController : MonoBehaviour
         //Application.targetFrameRate = 10;
 
         rigidbody2d = GetComponent<Rigidbody2D>();
-
         currentHealth = maxHealth;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void FixedUpdate()
@@ -74,15 +83,6 @@ public class RubyController : MonoBehaviour
         animator.SetFloat("Look X", lookDirection.x);
         animator.SetFloat("Look Y", lookDirection.y);
         animator.SetFloat("Speed", move.magnitude);
-
-        //空格回到中心点
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Vector2 position = transform.position;
-            position.x = 0;
-            position.y = 0;
-            transform.position = position;
-        }
 
         // 计算无敌时间，递减
         if (isInvincible)
@@ -135,10 +135,9 @@ public class RubyController : MonoBehaviour
             isInvincible = true;
             invincibleTimer = timeInvincible;
             currentHealth = Mathf.Clamp(currentHealth - amount, -1, maxHealth);
-            Debug.Log("Ruby has been damaged -" + amount + "hp,current hp is" + currentHealth);
+            this.PlaySound(onHitClip);
             if (currentHealth == 0)
             {
-                Debug.Log("Ruby is dead!");
                 Destroy(gameObject);
             }
         }
@@ -156,5 +155,12 @@ public class RubyController : MonoBehaviour
         projectile.Launch(lookDirection, 300);
 
         animator.SetTrigger("Launch");
+        this.PlaySound(throwCogClip);
+    }
+
+    // 播放音频
+    public void PlaySound(AudioClip clip)
+    {
+        audioSource.PlayOneShot(clip);
     }
 }

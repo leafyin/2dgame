@@ -20,12 +20,16 @@ public class EnemyController : MonoBehaviour
     Animator animator;
     public ParticleSystem smokeEffect;
 
+    AudioSource audioSource;
+    public AudioClip[] onHitClips;
+
     // Start is called before the first frame update
     void Start()
     {
         enemyRigidbody2d = GetComponent<Rigidbody2D>();
         timer = changeTime;
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -83,7 +87,16 @@ public class EnemyController : MonoBehaviour
         GetComponent<Rigidbody2D>().simulated = false;
         // ²¥·ÅÐÞ¸´ºÃ¶¯»­
         animator.SetTrigger("Fixed");
-        Debug.Log("SmokeParticle is stop");
+        this.onHit();
         smokeEffect.Stop();
+    }
+
+    public void onHit()
+    {
+        if (onHitClips.Length > 0)
+        {
+            int index = Random.Range(0, onHitClips.Length);
+            audioSource.PlayOneShot(onHitClips[index]);
+        }
     }
 }
